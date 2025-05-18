@@ -12,18 +12,26 @@ contract SimpleStorage {
 
     Person[] public listOfPeople;
 
-    function addPerson(uint256 _number, string memory _name) public  {
+    function retrieve() public view virtual  returns (uint256) {
+        return myNumber;
+    }
+
+    function addPerson(uint256 _number, string memory _name) public {
         Person memory newUser = Person({number: _number, name: _name});
         listOfPeople.push(newUser);
     }
+
     function getPeople() public view returns (Person[] memory) {
         return listOfPeople;
     }
-mapping (address => string) users;
-function addUsers(address _id,string memory _name) public{
-    users[_id]=_name;
-}
-function fetchUsers(address _id)public view returns (string memory){
-    return users[_id];
-}
+
+    mapping(address => string) users;
+
+    function addUsers(address _id, string memory _name) public {
+        users[_id] = _name;
+    }
+
+    function fetchUsers(address _id) public view returns (string memory) {
+        return users[_id];
+    }
 }
