@@ -12,32 +12,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "fund",
-				"outputs": [],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "minimumUSD",
+				"name": "getChainlinkDataFeedLatestAnswer",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "int256",
 						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "returnVersion",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
+						"type": "int256"
 					}
 				],
 				"stateMutability": "view",
@@ -52,16 +32,20 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {
-				"minimumUSD()": {
+				"constructor": {
+					"notice": "Network: Sepolia Aggregator: BTC/USD Address: 0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43"
+				},
+				"getChainlinkDataFeedLatestAnswer()": {
 					"notice": "Returns the latest answer."
 				}
 			},
+			"notice": "If you are reading data feeds on L2 networks, you must check the latest answer from the L2 Sequencer Uptime Feed to ensure that the data is accurate in the event of an L2 sequencer outage. See the https://docs.chain.link/data-feeds/l2-sequencer-feeds page for details.",
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"Contracts/FundMe.sol": "FundMe"
+			"Contracts/FundMe.sol": "DataConsumerV3"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -84,11 +68,11 @@
 			]
 		},
 		"Contracts/FundMe.sol": {
-			"keccak256": "0xdd07af64d3f8c1fa1c263eb2167f974bdb77aea541b0a214afd3f12c2e14a6c4",
+			"keccak256": "0x065cc455365f86476e18266a6149733d4ea11519740756a0ccf4d9d16fac1ca1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8a654ef5a23816ca2bcce3a06340c0c7fad840c07c0edf6f3bee7135f32e6db1",
-				"dweb:/ipfs/QmQf5yA8xjjtXxC3EKMN7bqpxVN3GijzcEvMnGvjFj6Yfk"
+				"bzz-raw://18b93f973f02411d2a53a42428664aaff094d4295b8f7afc01caa03252c60f51",
+				"dweb:/ipfs/QmNhbNM5hQebQPiMjX9ddXodxJWWmneZHqHzZG918kwsUP"
 			]
 		}
 	},
