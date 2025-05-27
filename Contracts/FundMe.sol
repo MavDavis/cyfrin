@@ -3,9 +3,10 @@ pragma solidity ^0.8.18;
 
 
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
-
+import {PriceConverter} from "../Library/PriceConverter.sol";
 
 contract FundMe{
+    using PriceConverter for uint256;
      AggregatorV3Interface internal dataFeed;
     constructor() {
         dataFeed = AggregatorV3Interface(
@@ -13,19 +14,24 @@ contract FundMe{
         );
     }
 
-    /**
-     * Returns the latest answer.
-     */
-    // function getChainlinkDataFeedLatestAnswer() public view returns (int) {
-    //     (int256 answer) = dataFeed.latestRoundData();
-    //     return answer;
-    // }
-    uint public minimumUSD = 5;
+  
+
+    uint public minimumUSD = 5 * 1e18;
+    address[] public funders;
+    mapping (address funder => uint256 amountFunded) public addressTofundAmount;
+
     function fund() public payable  {
-        require(msg.value > minimumUSD, "Funding amount too low");
+        require(msg.value.getConversionRate(dataFeed) >= minimumUSD, "Funding amount too low");
+        funders.push(msg.sender);
+        addressTofundAmount[msg.sender] += msg.value;
 
     }
-    function returnVersion()public view returns(uint){
-        return dataFeed.version();
+    function withdraw()public {
+        for(uint256 i = 0; i < funders.length; i++){
+            address funderAddress = funders[i];
+            addressTofundAmount[funderAddress] = 0;
+        }
+        funders = new address[](0);
     }
+
 }
