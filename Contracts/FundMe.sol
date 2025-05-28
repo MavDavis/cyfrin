@@ -32,6 +32,8 @@ contract FundMe{
             addressTofundAmount[funderAddress] = 0;
         }
         funders = new address[](0);
+        (bool callSuccess, bytes memory dataReturned) = msg.sender.call{value: address(this).balance}("");
+
     }
 
 }
